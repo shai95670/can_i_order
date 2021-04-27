@@ -13,10 +13,17 @@ export async function getStaticProps() {
   }
 }
 
+const createCards = (resturants) => {
+  return resturants.map((resturant)=> {
+    return <MediaCard resturant={resturant}></MediaCard>; 
+  });
+};
+
+//TODO: GENERATE CARD LIST WITH RESTURANT PROP
 export default function Home({ resturants }) {
   return (
     <Container>
-        <MediaCard></MediaCard> 
+        {createCards()} 
     </Container>
   )
 }
