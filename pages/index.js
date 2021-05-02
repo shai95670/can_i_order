@@ -16,12 +16,23 @@ export const getStaticProps = async () => {
 
 const createCards = (resturants) => {
   // online, public_url, name, mainimage
-  return resturants.map((resturant) => {
-    return <Card resturant={resturant} />
+  return resturants.map((resturant, index) => {
+    return <Card resturant={resturant} key={index} />
   })
 }
 
 //TODO: GENERATE CARD LIST WITH RESTURANT PROP
 export default function Home({ resturants }) {
-  return <div className="container">{createCards(resturants)}</div>
+
+  const style = {
+    container: {
+      maxWidth: 'initial',
+      display: 'flex',
+      justifyContent: 'space-evenly',
+      padding: '20px 0',
+      border: 'solid 0.1px'
+    }
+  }
+
+  return <div style={style.container} className="container">{createCards(resturants)}</div>
 }
