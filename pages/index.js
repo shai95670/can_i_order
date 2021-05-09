@@ -1,5 +1,6 @@
 import Card from '../components/card/card'
 import axios from 'axios'
+import { style } from '../style'
 
 // This function gets called at build time
 export const getStaticProps = async () => {
@@ -17,22 +18,15 @@ export const getStaticProps = async () => {
 const createCards = (resturants) => {
   // online, public_url, name, mainimage
   return resturants.map((resturant, index) => {
-    return <Card resturant={resturant} key={index} />
-  })
+    return <div key={index} style={style.column} className="column is-one-quarter"><Card resturant={resturant} /></div>
+  }
+  )
 }
 
 //TODO: GENERATE CARD LIST WITH RESTURANT PROP
 export default function Home({ resturants }) {
 
-  const style = {
-    container: {
-      maxWidth: 'initial',
-      display: 'flex',
-      justifyContent: 'space-evenly',
-      padding: '20px 0',
-      border: 'solid 0.1px'
-    }
-  }
-
-  return <div style={style.container} className="container">{createCards(resturants)}</div>
+  return (
+    <div key={resturants.id} style={style.columns} className="columns is-multiline is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
+      {createCards(resturants)}</div>)
 }

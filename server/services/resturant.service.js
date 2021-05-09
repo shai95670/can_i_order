@@ -2,7 +2,13 @@ const axios = require('axios');
 
 const generateResturantPromises = () => {
     const woltUrl = 'https://restaurant-api.wolt.com/v3/venues/slug/';
-    let resturantNames = ['26-hamburger-gourmet', 'cafe-taizu', 'sora', 'susu-and-sons-givatayim'];
+    let resturantNames = ['26-hamburger-gourmet', 'cafe-taizu',
+        'sora',
+        'susu-and-sons-givatayim',
+        'torii-sushi-givatayim',
+        'rodeo',
+        'mexicana-sarona-market',
+        'marlen'];
     let resturantPromises = resturantNames.map((resturantName) => {
         return axios.get(woltUrl + resturantName)
     });
@@ -11,7 +17,7 @@ const generateResturantPromises = () => {
 
 const formatToResturantObj = (obj) => {
     const { online, public_url, mainimage } = obj;
-    const { value:name } = obj.name[0]
+    const { value: name } = obj.name[0]
     return Object.assign({}, { online, public_url, name, mainimage });
 }
 
@@ -26,5 +32,5 @@ const fetchResturants = async () => {
 
 
 module.exports = {
-  fetchResturants
+    fetchResturants
 };
